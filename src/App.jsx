@@ -4,7 +4,7 @@ import NotFound from "./page/notFound";
 import { dateRules } from "./page/dateRules";
 import Dashboard from "./page/dashboard";
 import DateRedirectMiddleware from "./page/middleware";
-import AccessPage from "./page/access";
+import GroupPage from "./page/group";
 
 export default function App() {
   return (
@@ -27,10 +27,10 @@ export default function App() {
           }
         />
         <Route
-          path="/access/:kelompok"
+          path="/group/:kelompok"
           element={
             <DateRedirectMiddleware rules={dateRules}>
-              <AccessPage />
+              <GroupPage />
             </DateRedirectMiddleware>
           }
         />

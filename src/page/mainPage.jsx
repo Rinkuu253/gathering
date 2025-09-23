@@ -26,45 +26,60 @@ export default function MainPage() {
   }, []);
   return (
     <>
-      <Container size={"xl"}>
-        <Title>Beyond Journey - The Rise of Agents</Title>
-        <Flex gap={"lg"} direction={"column"} mt={"xl"} maw={800} mx={"auto"}>
-          <Text>
-            Dunia terus bergerak, penuh dengan peluang… sekaligus ancaman yang
-            tersembunyi.
+      <Container size={"xl"} px={"md"} m={0}>
+        <Flex
+          direction={"column"}
+          h={"100vh"}
+          w={"100%"}
+          py={"xl"}
+          px={"xl"}
+          align={"center"}
+          mx={"auto"}
+          gap={"md"}
+        >
+          <Text fz={"h2"} fw={700}>
+            Beyond Journey - <br />
+            The Rise of Agents
           </Text>
-          <Text>
-            Di balik kesibukan sehari-hari, ada musuh yang tak terlihat,
-            perlahan melemahkan potensi, merampas efisiensi, dan menguji
-            ketangguhan kita. Hanya mereka yang siap membuka mata, membaca
-            tanda, dan menembus batas yang mampu bertahan. Anda bukan sekadar
-            peserta.
-          </Text>
-          <Text>
-            Anda dipilih sebagai{" "}
-            <Text span fw={900}>
-              Agent
+          <Flex gap={"lg"} direction={"column"} mt={"xl"} maw={800} mx={"auto"}>
+            <Text fz={"xs"}>
+              Dunia terus bergerak, penuh dengan peluang… sekaligus ancaman yang
+              tersembunyi.
             </Text>
-            , bagian dari sebuah{" "}
-            <Text span fw={900}>
-              Squad Rahasia
-            </Text>{" "}
-            yang akan menapaki Beyond Journey. Perjalanan ini tidak mudah. Anda
-            akan diuji dalam kekuatan, strategi, kecerdasan, dan kerja sama.
-          </Text>
-          <Text>
-            Pertanyaannya sederhana:
-            <br />
-            <Text span fw={900}>
-              Apakah anda siap? Nantikan The Beyond Journey 26 Sep 2025 @West
-              Java 700MDPL
+            <Text fz={"xs"}>
+              Di balik kesibukan sehari-hari, ada musuh yang tak terlihat,
+              perlahan melemahkan potensi, merampas efisiensi, dan menguji
+              ketangguhan kita. Hanya mereka yang siap membuka mata, membaca
+              tanda, dan menembus batas yang mampu bertahan. Anda bukan sekadar
+              peserta.
             </Text>
-          </Text>
+            <Text fz={"xs"}>
+              Anda dipilih sebagai{" "}
+              <Text span fw={900} fz={"xs"}>
+                Agent
+              </Text>
+              , bagian dari sebuah{" "}
+              <Text span fw={900} fz={"xs"}>
+                Squad Rahasia
+              </Text>{" "}
+              yang akan menapaki Beyond Journey. Perjalanan ini tidak mudah.
+              Anda akan diuji dalam kekuatan, strategi, kecerdasan, dan kerja
+              sama.
+            </Text>
+            <Text fz={"xs"}>
+              Pertanyaannya sederhana:
+              <br />
+              <Text span fw={700} fz={"xs"}>
+                Apakah anda siap? Nantikan The Beyond Journey 26 Sep 2025 @West
+                Java 700MDPL
+              </Text>
+            </Text>
+          </Flex>
+          <audio ref={audioRef} autoPlay loop muted hidden>
+            <source src="/music/sherma.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
         </Flex>
-        <audio ref={audioRef} autoPlay loop muted hidden>
-          <source src="/music/sherma.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
       </Container>
     </>
   );
