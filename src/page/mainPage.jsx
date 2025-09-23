@@ -37,7 +37,7 @@ export default function MainPage() {
           mx={"auto"}
           gap={"md"}
         >
-          <Text fz={"h2"} fw={700}>
+          <Text fz={"h3"} fw={700}>
             Beyond Journey - <br />
             The Rise of Agents
           </Text>
