@@ -34,7 +34,7 @@ export default function App() {
             </DateRedirectMiddleware>
           }
         />
-        <Route path="/notfound" element={<NotFound />} />
+        <Route path="/notfound/:kelompok" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

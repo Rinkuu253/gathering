@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function NotFound() {
   const navigate = useNavigate();
-  const { kelompok } = useParams(); // capture param if available
+  const { kelompok } = useParams();
   return (
     <>
       <Container size={"xl"}>

@@ -9,22 +9,17 @@ export default function DateRedirectMiddleware({ rules, children }) {
     if (now >= rule.start && now <= rule.end) {
       let target = rule.redirectTo;
 
-      // replace dynamic params (:kelompok)
       Object.entries(params).forEach(([key, value]) => {
         target = target.replace(`:${key}`, value);
       });
 
-      // avoid infinite loop
       if (location.pathname !== target) {
         return <Navigate to={target} replace />;
       }
+      return children;
     }
   }
 
-  // kalau ga ada rule yang cocok, render halaman aslinya
-  return (
-    <>
-      <Navigate to={`/notfound/${params.kelompok}`} />
-    </>
-  );
+  // ❌ no matching rule → redirect to NotFound
+  return <Navigate to={`/notfound/${params.kelompok}`} replace />;
 }
