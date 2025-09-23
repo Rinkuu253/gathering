@@ -24,7 +24,7 @@ export default function DateRedirectMiddleware({ rules, children }) {
   // kalau ga ada rule yang cocok, render halaman aslinya
   return (
     <>
-      <Navigate to={`/notfound/${kelompok}`} />
+      <Navigate to={`/notfound/${params.kelompok}`} />
     </>
   );
 }
