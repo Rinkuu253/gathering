@@ -3,9 +3,25 @@ import { Container, Flex, Group, Text, Title } from "@mantine/core";
 import "../App.css";
 import { IconVolume } from "@tabler/icons-react";
 
+function isBetween(startStr, endStr) {
+  const now = new Date();
+  const nowJakarta = new Date(
+    now.toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
+  );
+
+  const start = new Date(startStr);
+  const end = new Date(endStr);
+
+  return nowJakarta >= start && nowJakarta <= end;
+}
+
 export default function MainPage() {
-  const now = Date.now();
-  return <MainPageFirstDay />;
+  const inRange = isBetween(
+    "2025-09-24T00:00:00+07:00", // mulai 24 Sept 2025 jam 00:00 WIB
+    "2025-09-26T08:00:00+07:00" // sampai 26 Sept 2025 jam 08:00 WIB
+  );
+
+  return inRange ? <MainPageFirstDay /> : <MainPageSecondDay />;
 }
 
 const MainPageFirstDay = () => {

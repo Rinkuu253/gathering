@@ -5,12 +5,12 @@ export const dateRules = [
     redirectTo: "/main/:kelompok",
   },
   {
-    start: new Date("2025-09-26T08:00:00+07:00").getTime(),
+    start: new Date("2025-09-22T08:00:00+07:00").getTime(),
     end: new Date("2025-09-28T16:50:00+07:00").getTime(),
     redirectTo: "/group/:kelompok",
   },
   {
-    start: new Date("2025-09-26T08:00:00+07:00").getTime(),
+    start: new Date("2025-09-22T08:00:00+07:00").getTime(),
     end: new Date("2025-09-28T16:50:00+07:00").getTime(),
     redirectTo: "/group/:kelompok/squad",
   },

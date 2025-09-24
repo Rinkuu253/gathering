@@ -14,6 +14,18 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { listGroup } from "./dateRules";
 import { useDisclosure } from "@mantine/hooks";
 
+function isAvailable(startDateStr) {
+  // sekarang (WIB)
+  const now = new Date();
+  const nowJakarta = new Date(
+    now.toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
+  );
+
+  // tanggal mulai
+  const start = new Date(startDateStr); // format ISO string biar aman
+  return nowJakarta >= start;
+}
+
 export default function MainPage() {
   const navigate = useNavigate();
   const { kelompok } = useParams();
@@ -45,62 +57,80 @@ export default function MainPage() {
               />
             </Flex>
             <Flex justify={"center"} direction={"column"} gap={"md"} w={"100%"}>
-              <Button
-                fullWidth
-                size="lg"
-                radius={"lg"}
-                variant="outline"
-                c={"white"}
-              >
-                Hint {/**Jam 9 */}
-              </Button>
-              <Button
-                fullWidth
-                size="lg"
-                radius={"lg"}
-                variant="outline"
-                c={"white"}
-                onClick={openSeat}
-              >
-                Seatmap {/**Jam 8 */}
-              </Button>
-              <Button
-                fullWidth
-                size="lg"
-                radius={"lg"}
-                variant="outline"
-                c={"white"}
-                onClick={openMap}
-              >
-                Map {/**Jam 9 */}
-              </Button>
-              <Button
-                fullWidth
-                size="lg"
-                radius={"lg"}
-                variant="outline"
-                c={"white"}
-                onClick={() => navigate(`/group/${kelompok}/district`)}
-              >
-                District (Villa) {/**Jam 11.10 */}
-              </Button>
-              <Button
-                fullWidth
-                size="lg"
-                radius={"lg"}
-                variant="outline"
-                c={"white"}
-                onClick={() => navigate(`/group/${kelompok}/squad`)}
-              >
-                Squad Unit {/**Jam 8.50 */}
-              </Button>
+              {/* muncul mulai 26 Sept jam 08:00 WIB */}
+              {isAvailable("2025-09-22T09:00:00+07:00") && (
+                <Button
+                  fullWidth
+                  size="lg"
+                  radius="lg"
+                  variant="outline"
+                  c="white"
+                >
+                  Hint
+                </Button>
+              )}
+
+              {/* muncul mulai 26 Sept jam 09:00 WIB */}
+              {isAvailable("2025-09-22T08:00:00+07:00") && (
+                <Button
+                  fullWidth
+                  size="lg"
+                  radius="lg"
+                  variant="outline"
+                  c="white"
+                  onClick={openSeat}
+                >
+                  Seatmap
+                </Button>
+              )}
+
+              {isAvailable("2025-09-22T09:00:00+07:00") && (
+                <Button
+                  fullWidth
+                  size="lg"
+                  radius="lg"
+                  variant="outline"
+                  c="white"
+                  onClick={openMap}
+                >
+                  Map
+                </Button>
+              )}
+
+              {/* muncul mulai 26 Sept jam 11:10 WIB */}
+              {isAvailable("2025-09-22T11:10:00+07:00") && (
+                <Button
+                  fullWidth
+                  size="lg"
+                  radius="lg"
+                  variant="outline"
+                  c="white"
+                  onClick={() => navigate(`/group/${kelompok}/district`)}
+                >
+                  District (Villa)
+                </Button>
+              )}
+
+              {/* muncul mulai 26 Sept jam 08:50 WIB */}
+              {isAvailable("2025-09-22T08:50:00+07:00") && (
+                <Button
+                  fullWidth
+                  size="lg"
+                  radius="lg"
+                  variant="outline"
+                  c="white"
+                  onClick={() => navigate(`/group/${kelompok}/squad`)}
+                >
+                  Squad Unit
+                </Button>
+              )}
             </Flex>
           </Flex>
         </Card>
       </Container>
       <Modal
         opened={openedMap}
-        onClose={closeSeat}
+        onClose={closeMap}
         title="Map"
         withCloseButton
         overlayProps={{
@@ -119,7 +149,7 @@ export default function MainPage() {
       <Modal
         opened={openedSeat}
         onClose={closeSeat}
-        title="Map"
+        title="SeatMap"
         withCloseButton
         overlayProps={{
           backgroundOpacity: 0.55,
