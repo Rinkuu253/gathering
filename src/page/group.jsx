@@ -10,13 +10,17 @@ import {
   Title,
 } from "@mantine/core";
 import "../App.css";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { listGroup } from "./dateRules";
 import { useDisclosure } from "@mantine/hooks";
 
 export default function MainPage() {
+  const navigate = useNavigate();
   const { kelompok } = useParams();
-  const [opened, { open, close }] = useDisclosure(false);
+  const [openedMap, { open: openMap, close: closeMap }] = useDisclosure(false);
+  const [openedSeat, { open: openSeat, close: closeSeat }] =
+    useDisclosure(false);
+
   return (
     <>
       <Container size={"xl"} px={"md"} m={0}>
@@ -30,7 +34,7 @@ export default function MainPage() {
           >
             <Flex justify=" center" direction={"column"} gap={"xl"}>
               <Text fz={"h1"} fw={700} c={"white"}>
-                Selamat Bermain
+                Welcome Agent
                 <br />
                 Squad
               </Text>
@@ -40,7 +44,7 @@ export default function MainPage() {
                 mx={"auto"}
               />
             </Flex>
-            <Flex justify={"center"} direction={"column"} gap={"xl"} w={"100%"}>
+            <Flex justify={"center"} direction={"column"} gap={"md"} w={"100%"}>
               <Button
                 fullWidth
                 size="lg"
@@ -48,7 +52,7 @@ export default function MainPage() {
                 variant="outline"
                 c={"white"}
               >
-                Hint
+                Hint {/**Jam 9 */}
               </Button>
               <Button
                 fullWidth
@@ -56,9 +60,9 @@ export default function MainPage() {
                 radius={"lg"}
                 variant="outline"
                 c={"white"}
-                onClick={open}
+                onClick={openSeat}
               >
-                Peta
+                Seatmap {/**Jam 8 */}
               </Button>
               <Button
                 fullWidth
@@ -66,8 +70,9 @@ export default function MainPage() {
                 radius={"lg"}
                 variant="outline"
                 c={"white"}
+                onClick={openMap}
               >
-                List Kamar
+                Map {/**Jam 9 */}
               </Button>
               <Button
                 fullWidth
@@ -75,17 +80,28 @@ export default function MainPage() {
                 radius={"lg"}
                 variant="outline"
                 c={"white"}
+                onClick={() => navigate(`/group/${kelompok}/district`)}
               >
-                List Kelompok
+                District (Villa) {/**Jam 11.10 */}
+              </Button>
+              <Button
+                fullWidth
+                size="lg"
+                radius={"lg"}
+                variant="outline"
+                c={"white"}
+                onClick={() => navigate(`/group/${kelompok}/squad`)}
+              >
+                Squad Unit {/**Jam 8.50 */}
               </Button>
             </Flex>
           </Flex>
         </Card>
       </Container>
       <Modal
-        opened={opened}
-        onClose={close}
-        title="Authentication"
+        opened={openedMap}
+        onClose={closeSeat}
+        title="Map"
         withCloseButton
         overlayProps={{
           backgroundOpacity: 0.55,
@@ -97,6 +113,24 @@ export default function MainPage() {
           src="/denah.jpg"
           alt="Denah"
           onClick={() => window.open("/denah.jpg", "_blank")}
+          style={{ cursor: "pointer" }}
+        />
+      </Modal>
+      <Modal
+        opened={openedSeat}
+        onClose={closeSeat}
+        title="Map"
+        withCloseButton
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+        centered
+      >
+        <Image
+          src="/seatMap.jpeg"
+          alt="SeatMap"
+          onClick={() => window.open("/seatMap.jpeg", "_blank")}
           style={{ cursor: "pointer" }}
         />
       </Modal>
