@@ -5,6 +5,7 @@ import { dateRules } from "./page/dateRules";
 import Dashboard from "./page/dashboard";
 import DateRedirectMiddleware from "./page/middleware";
 import GroupPage from "./page/group";
+import MainPageSecondDay from "./page/mainPageSecond";
 
 export default function App() {
   return (

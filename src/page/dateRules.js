@@ -5,7 +5,7 @@ export const dateRules = [
     redirectTo: "/main/:kelompok",
   },
   {
-    start: new Date("2025-09-27T16:54:01+07:00").getTime(),
+    start: new Date("2025-09-22T16:54:01+07:00").getTime(),
     end: new Date("2025-09-27T16:50:00+07:00").getTime(),
     redirectTo: "/group/:kelompok",
   },

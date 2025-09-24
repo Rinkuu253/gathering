@@ -1,8 +1,118 @@
 import { useEffect, useRef, useState } from "react";
-import { Container, Flex, Text, Title } from "@mantine/core";
+import { Container, Flex, Group, Text, Title } from "@mantine/core";
 import "../App.css";
+import { IconVolume } from "@tabler/icons-react";
 
 export default function MainPage() {
+  const now = Date.now();
+  return <MainPageFirstDay />;
+}
+
+const MainPageFirstDay = () => {
+  const audioRef = useRef(null);
+
+  const [showIcon, setShowIcon] = useState(false);
+
+  const handleTextClick = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.muted = false;
+      audio.play();
+      setShowIcon(true); // show the volume icon
+    }
+  };
+
+  const handleIconClick = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  };
+  return (
+    <>
+      <Container size={"xl"} px={"md"} m={0}>
+        <Flex
+          direction={"column"}
+          h={"100vh"}
+          w={"100%"}
+          py={"xl"}
+          px={"xl"}
+          align={"center"}
+          mx={"auto"}
+          gap={"md"}
+        >
+          <Text fz={"h3"} fw={700}>
+            Beyond Journey - <br />
+            The Rise of Agents
+          </Text>
+          <Group>
+            {!showIcon && (
+              <Text
+                fz={"xs"}
+                style={{ cursor: "pointer", userSelect: "none" }}
+                onClick={handleTextClick}
+              >
+                {`> Tap for Audio <`}
+              </Text>
+            )}
+
+            {showIcon && (
+              <IconVolume
+                color="white"
+                size={24}
+                style={{ cursor: "pointer" }}
+                onClick={handleIconClick}
+              />
+            )}
+          </Group>
+          <Flex gap={"lg"} direction={"column"} mt={"md"} maw={800} mx={"auto"}>
+            <Text fz={"xs"}>
+              Dunia terus bergerak, penuh dengan peluang… sekaligus ancaman yang
+              tersembunyi.
+            </Text>
+            <Text fz={"xs"}>
+              Di balik kesibukan sehari-hari, ada musuh yang tak terlihat,
+              perlahan melemahkan potensi, merampas efisiensi, dan menguji
+              ketangguhan kita. Hanya mereka yang siap membuka mata, membaca
+              tanda, dan menembus batas yang mampu bertahan. Anda bukan sekadar
+              peserta.
+            </Text>
+            <Text fz={"xs"}>
+              Anda dipilih sebagai{" "}
+              <Text span fw={900} fz={"xs"}>
+                Agent
+              </Text>
+              , bagian dari sebuah{" "}
+              <Text span fw={900} fz={"xs"}>
+                Squad Rahasia
+              </Text>{" "}
+              yang akan menapaki Beyond Journey. Perjalanan ini tidak mudah.
+              Anda akan diuji dalam kekuatan, strategi, kecerdasan, dan kerja
+              sama.
+            </Text>
+            <Text fz={"xs"}>
+              Pertanyaannya sederhana:
+              <br />
+              <Text span fw={700} fz={"xs"}>
+                Apakah anda siap? Nantikan The Beyond Journey 26 Sep 2025 @West
+                Java 700MDPL
+              </Text>
+            </Text>
+          </Flex>
+          <audio ref={audioRef} autoPlay loop muted>
+            <source src="/music/sherma.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </Flex>
+      </Container>
+    </>
+  );
+};
+const MainPageSecondDay = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -38,41 +148,39 @@ export default function MainPage() {
           gap={"md"}
         >
           <Text fz={"h3"} fw={700}>
-            Beyond Journey - <br />
-            The Rise of Agents
+            The Departure Code
           </Text>
           <Flex gap={"lg"} direction={"column"} mt={"xl"} maw={800} mx={"auto"}>
+            <Text fz={"xs"}>Perjalanan ini bukan perjalanan biasa.</Text>
             <Text fz={"xs"}>
-              Dunia terus bergerak, penuh dengan peluang… sekaligus ancaman yang
-              tersembunyi.
+              Perjalanan ini bukan perjalanan biasa. Dalam hitungan menit,
+              identitas barumu akan diaktifkan.
             </Text>
             <Text fz={"xs"}>
-              Di balik kesibukan sehari-hari, ada musuh yang tak terlihat,
-              perlahan melemahkan potensi, merampas efisiensi, dan menguji
-              ketangguhan kita. Hanya mereka yang siap membuka mata, membaca
-              tanda, dan menembus batas yang mampu bertahan. Anda bukan sekadar
-              peserta.
-            </Text>
-            <Text fz={"xs"}>
-              Anda dipilih sebagai{" "}
+              Anda bukan lagi hanya seorang peserta — anda akan resmi menjadi{" "}
               <Text span fw={900} fz={"xs"}>
                 Agent
               </Text>
-              , bagian dari sebuah{" "}
+              , dengan{" "}
               <Text span fw={900} fz={"xs"}>
-                Squad Rahasia
+                ID
               </Text>{" "}
-              yang akan menapaki Beyond Journey. Perjalanan ini tidak mudah.
-              Anda akan diuji dalam kekuatan, strategi, kecerdasan, dan kerja
-              sama.
+              yang menandai siapa dirimu dalam misi ini. Tiket Woosh-mu bukan
+              sekadar akses perjalanan… ia adalah kunci menuju dunia penuh
+              rahasia, tantangan, dan Villain yang menunggu untuk diungkap.
             </Text>
             <Text fz={"xs"}>
-              Pertanyaannya sederhana:
+              Dengarkan baik-baik: setiap kode, setiap simbol, setiap langkah
+              akan menentukan apakah Squad-mu akan bertahan… atau tersingkir
+              dalam bayangan sejarah.
+            </Text>
+
+            <Text fz={"sm"} fw={700}>
+              Bersiaplah. Agent ID-mu dan Tiket Woosh sebentar lagi tiba
               <br />
-              <Text span fw={700} fz={"xs"}>
-                Apakah anda siap? Nantikan The Beyond Journey 26 Sep 2025 @West
-                Java 700MDPL
-              </Text>
+            </Text>
+            <Text fw={900} fz={"lg"} mt={"md"}>
+              Siap berangkat, Agent?
             </Text>
           </Flex>
           <audio ref={audioRef} autoPlay loop muted hidden>
@@ -83,4 +191,4 @@ export default function MainPage() {
       </Container>
     </>
   );
-}
+};
