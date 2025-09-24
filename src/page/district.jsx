@@ -20,7 +20,7 @@ export default function DistrictList() {
       name: "Alpha",
       description:
         "Alpha District represents leadership, courage, and vision. Symbolized by the eagle.",
-      icon: "/images/alpha.png",
+      icon: "/district/alpha_balanced.png",
       members: [
         "SANDY QLINTANG",
         "JIMMY SUSANTO",
@@ -33,7 +33,7 @@ export default function DistrictList() {
       name: "Bravo",
       description:
         "Bravo District stands for protection, defense, and resilience. Represented by the shield.",
-      icon: "/images/bravo.png",
+      icon: "/district/bravo_balanced.png",
       members: [
         "MUHAMMAD PAJAR",
         "STEFAN NUGROHO",
@@ -50,7 +50,7 @@ export default function DistrictList() {
       name: "Charlie",
       description:
         "Charlie District is about strength in arms, strategy, and combat. Its symbol is crossed swords.",
-      icon: "/images/charlie.png",
+      icon: "/district/charlie_balanced.png",
       members: [
         "FATICHA NASHARO QISTHIA FARID",
         "SAKINAH BALADRAF",
@@ -66,7 +66,7 @@ export default function DistrictList() {
       name: "Delta",
       description:
         "Delta District embodies communication, waves, and connectivity.",
-      icon: "/images/delta.png",
+      icon: "/district/delta_balanced.png",
       members: [
         "FERI IRWANSYAH",
         "OSWALD DEW SACHIO S",
@@ -85,7 +85,7 @@ export default function DistrictList() {
       key: "echo",
       name: "Echo",
       description: "Echo District values wisdom, knowledge, and healing.",
-      icon: "/images/echo.png",
+      icon: "/district/echo_balanced.png",
       members: [
         "DR. ADELINE",
         "TJHIA LIAN NIE",
@@ -102,7 +102,7 @@ export default function DistrictList() {
       name: "Foxtrot",
       description:
         "Foxtrot District is progress, movement upward, and tactical advancement.",
-      icon: "/images/foxtrot.png",
+      icon: "/district/foxtrot_balanced.png",
       members: [
         "KEISHA",
         "MELLY YANA SILVI",
@@ -119,7 +119,7 @@ export default function DistrictList() {
       name: "Oscar",
       description:
         "Oscar District symbolizes precision, direction, and sharp focus.",
-      icon: "/images/oscar.png",
+      icon: "/district/oscar_balanced.png",
       members: [
         "RUKTININGSIH",
         "WIDIA MELIAWATI",
@@ -136,7 +136,7 @@ export default function DistrictList() {
       key: "sierra",
       name: "Sierra",
       description: "Sierra District stands for resilience, unity, and growth.",
-      icon: "/images/sierra.png",
+      icon: "/district/sierra_balanced.png",
       members: [
         "KRISTIN THERESIA",
         "MICHELLINA YUNARDY",
@@ -157,7 +157,7 @@ export default function DistrictList() {
       name: "Tango",
       description:
         "Tango District represents loyalty, instinct, and the wild. Its emblem is the wolf.",
-      icon: "/images/tango.png",
+      icon: "/district/tango_balanced.png",
       members: [
         "ANGGA",
         "IRVAN",
@@ -175,7 +175,7 @@ export default function DistrictList() {
       name: "Victor",
       description:
         "Victor District values endurance, stability, and tradition.",
-      icon: "/images/victor.png",
+      icon: "/district/victor_balanced.png",
       members: [
         "SURYA DHARMA",
         "HANSLIBRERY",
@@ -190,7 +190,7 @@ export default function DistrictList() {
       key: "yankee",
       name: "Yankee",
       description: "Yankee District is unity, honor, and recognition.",
-      icon: "/images/yankee.png",
+      icon: "/district/yankee_balanced.png",
       members: [
         "AGUS SURANTO",
         "FERI PURWO",
@@ -205,7 +205,7 @@ export default function DistrictList() {
       key: "zulu",
       name: "Zulu",
       description: "Zulu District stands for tradition, victory, and glory.",
-      icon: "/images/zulu.png",
+      icon: "/district/zulu_balanced.png",
       members: [
         "ANTONIUS TEGUH IMAN",
         "NATHANAEL",
@@ -222,18 +222,18 @@ export default function DistrictList() {
         <Title c={"white"} my={"xl"}>
           District
         </Title>
-        <ScrollArea h={"50vh"}>
-          <Accordion>
+        <ScrollArea h={"55vh"}>
+          <Accordion variant="default" chevronIconSize={19} chevron>
             {districts.map((district) => (
               <Accordion.Item value={district.key} key={district.key}>
                 <Accordion.Control>
                   <Flex align="center" gap="md">
-                    {/* <Image
+                    <Image
                       src={district.icon}
                       alt={district.name}
-                      width={40}
-                      height={40}
-                    /> */}
+                      fit="contain"
+                      w={30}
+                    />
                     <Title order={4} c={"white"}>
                       District {district.name}
                     </Title>
@@ -247,7 +247,11 @@ export default function DistrictList() {
                       </Title>
                       <List spacing="xs" withPadding ta={"left"}>
                         {district.members.map((m, idx) => (
-                          <List.Item key={idx} fz={"xs"}>
+                          <List.Item
+                            key={idx}
+                            fz={"xs"}
+                            style={{ letterSpacing: "2px" }}
+                          >
                             {m}
                           </List.Item>
                         ))}

@@ -44,7 +44,7 @@ export default function MainPage() {
             justify={"space-between"}
             my={"xl"}
           >
-            <Flex justify=" center" direction={"column"} gap={"xl"}>
+            <Flex justify=" center" direction={"column"} gap={"md"}>
               <Text fz={"h1"} fw={700} c={"white"}>
                 Welcome Agent
                 <br />
