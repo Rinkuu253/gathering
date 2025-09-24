@@ -131,25 +131,27 @@ const MainPageFirstDay = () => {
 const MainPageSecondDay = () => {
   const audioRef = useRef(null);
 
-  useEffect(() => {
+  const [showIcon, setShowIcon] = useState(false);
+
+  const handleTextClick = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.muted = false;
+      audio.play();
+      setShowIcon(true); // show the volume icon
+    }
+  };
+
+  const handleIconClick = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Try autoplay immediately
-    audio.play().catch(() => {
-      console.log("Autoplay with sound blocked, waiting for click...");
-    });
-
-    // Unmute on first click
-    const enableSound = () => {
-      audio.muted = false;
+    if (audio.paused) {
       audio.play();
-      document.removeEventListener("click", enableSound);
-    };
-
-    document.addEventListener("click", enableSound);
-    return () => document.removeEventListener("click", enableSound);
-  }, []);
+    } else {
+      audio.pause();
+    }
+  };
   return (
     <>
       <Container size={"xl"} px={"md"} m={0}>
@@ -166,6 +168,26 @@ const MainPageSecondDay = () => {
           <Text fz={"h3"} fw={700}>
             The Departure Code
           </Text>
+          <Group>
+            {!showIcon && (
+              <Text
+                fz={"xs"}
+                style={{ cursor: "pointer", userSelect: "none" }}
+                onClick={handleTextClick}
+              >
+                {`> Tap for Audio <`}
+              </Text>
+            )}
+
+            {showIcon && (
+              <IconVolume
+                color="white"
+                size={24}
+                style={{ cursor: "pointer" }}
+                onClick={handleIconClick}
+              />
+            )}
+          </Group>
           <Flex gap={"lg"} direction={"column"} mt={"xl"} maw={800} mx={"auto"}>
             <Text fz={"xs"}>Perjalanan ini bukan perjalanan biasa.</Text>
             <Text fz={"xs"}>
