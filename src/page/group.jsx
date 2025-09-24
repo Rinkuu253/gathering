@@ -158,9 +158,9 @@ export default function MainPage() {
         centered
       >
         <Image
-          src="/seatMap.jpeg"
+          src="/seatMap.png"
           alt="SeatMap"
-          onClick={() => window.open("/seatMap.jpeg", "_blank")}
+          onClick={() => window.open("/seatMap.png", "_blank")}
           style={{ cursor: "pointer" }}
         />
       </Modal>

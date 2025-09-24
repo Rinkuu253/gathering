@@ -6,6 +6,7 @@ import Dashboard from "./page/dashboard";
 import DateRedirectMiddleware from "./page/middleware";
 import GroupPage from "./page/group";
 import SquadList from "./page/squad";
+import DistrictList from "./page/district";
 
 export default function App() {
   return (
@@ -40,6 +41,14 @@ export default function App() {
           element={
             <DateRedirectMiddleware rules={dateRules}>
               <SquadList />
+            </DateRedirectMiddleware>
+          }
+        />
+        <Route
+          path="/group/:kelompok/district"
+          element={
+            <DateRedirectMiddleware rules={dateRules}>
+              <DistrictList />
             </DateRedirectMiddleware>
           }
         />
