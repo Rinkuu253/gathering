@@ -26,8 +26,10 @@ export default function MainPage() {
             my={"xl"}
           >
             <Flex justify=" center" direction={"column"} gap={"xl"}>
-              <Text fz={"xl"} fw={700} c={"white"}>
-                Selamat Bermain Kelompok
+              <Text fz={"h1"} fw={700} c={"white"}>
+                Selamat Bermain
+                <br />
+                Squad
               </Text>
               <Image
                 src={`/Group/${listGroup?.[kelompok]?.name}.png`}

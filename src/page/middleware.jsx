@@ -5,21 +5,35 @@ export default function DateRedirectMiddleware({ rules, children }) {
   const params = useParams();
   const location = useLocation();
 
-  for (const rule of rules) {
-    if (now >= rule.start && now <= rule.end) {
-      let target = rule.redirectTo;
+  // Cari rule yang cocok dengan waktu SEKARANG
+  const activeRules = rules.filter(
+    (rule) => now >= rule.start && now <= rule.end
+  );
 
+  if (activeRules.length > 0) {
+    // cek apakah path sekarang termasuk salah satu rule yang aktif
+    const matchedRule = activeRules.find((rule) => {
+      let target = rule.redirectTo;
       Object.entries(params).forEach(([key, value]) => {
         target = target.replace(`:${key}`, value);
       });
+      return location.pathname.startsWith(target);
+    });
 
-      if (location.pathname !== target) {
-        return <Navigate to={target} replace />;
-      }
+    if (matchedRule) {
+      // ✅ user sudah di halaman yang valid → biarkan
       return children;
     }
+
+    // ❌ user belum di salah satu rule yang valid → redirect ke rule pertama
+    let target = activeRules[0].redirectTo;
+    Object.entries(params).forEach(([key, value]) => {
+      target = target.replace(`:${key}`, value);
+    });
+
+    return <Navigate to={target} replace />;
   }
 
-  // ❌ no matching rule → redirect to NotFound
+  // ❌ no matching rule → redirect ke NotFound
   return <Navigate to={`/notfound/${params.kelompok}`} replace />;
 }
