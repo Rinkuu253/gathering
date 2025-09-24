@@ -18,10 +18,20 @@ function isBetween(startStr, endStr) {
 export default function MainPage() {
   const inRange = isBetween(
     "2025-09-24T00:00:00+07:00", // mulai 24 Sept 2025 jam 00:00 WIB
+    "2025-09-25T07:59:59+07:00" // sampai 26 Sept 2025 jam 08:00 WIB
+  );
+  const inRange2 = isBetween(
+    "2025-09-25T08:00:00+07:00", // mulai 24 Sept 2025 jam 00:00 WIB
     "2025-09-26T08:00:00+07:00" // sampai 26 Sept 2025 jam 08:00 WIB
   );
 
-  return inRange ? <MainPageFirstDay /> : <MainPageSecondDay />;
+  return inRange ? (
+    <MainPageFirstDay />
+  ) : inRange2 ? (
+    <MainPageSecondDay />
+  ) : (
+    <MainPageThirdDay />
+  );
 }
 
 const MainPageFirstDay = () => {
@@ -128,7 +138,108 @@ const MainPageFirstDay = () => {
     </>
   );
 };
+
 const MainPageSecondDay = () => {
+  const audioRef = useRef(null);
+
+  const [showIcon, setShowIcon] = useState(false);
+
+  const handleTextClick = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.muted = false;
+      audio.play();
+      setShowIcon(true); // show the volume icon
+    }
+  };
+
+  const handleIconClick = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  };
+  return (
+    <>
+      <Container size={"xl"} px={"md"} m={0}>
+        <Flex
+          direction={"column"}
+          h={"100vh"}
+          w={"100%"}
+          py={"xl"}
+          px={"xl"}
+          align={"center"}
+          mx={"auto"}
+          gap={"md"}
+        >
+          <Text fz={"h3"} fw={700}>
+            Beyond Journey - <br />
+            The Rise of Agents
+          </Text>
+          <Group>
+            {!showIcon && (
+              <Text
+                fz={"xs"}
+                style={{ cursor: "pointer", userSelect: "none" }}
+                onClick={handleTextClick}
+              >
+                {`> Tap for Audio <`}
+              </Text>
+            )}
+
+            {showIcon && (
+              <IconVolume
+                color="white"
+                size={24}
+                style={{ cursor: "pointer" }}
+                onClick={handleIconClick}
+              />
+            )}
+          </Group>
+          <Flex gap={"lg"} direction={"column"} mt={"md"} maw={800} mx={"auto"}>
+            <Text fz={"xs"}>
+              Besok, perjalanan akan dimulai. Dunia lama akan ditinggalkan, dan
+              satu per satu identitas baru akan diungkapkan.
+            </Text>
+            <Text fz={"xs"}>
+              Hingga saat ini, kamu hanyalah{" "}
+              <Text span fw={700} fz={"xs"}>
+                peserta biasa
+              </Text>
+              . Tapi mulai esok, kamu akan resmi menjadi{" "}
+              <Text span fw={700} fz={"xs"}>
+                Agen
+              </Text>
+              . Dengan kode, dengan tugas, dengan misi.
+            </Text>
+            <Text fz={"xs"}>
+              Malam ini, rahasiakan semangatmu. Simpan energimu. Karena besok,
+              saat fajar baru menyala, Agent ID, boarding pass, dan akses menuju
+              Beyond Journey akan diberikan kepadamu.
+            </Text>
+            <Text fz={"xs"}>
+              Bersiaplah…
+              <br />
+              <Text span fw={700} fz={"xs"}>
+                dunia akan segera berubah, dan kamu adalah bagian dari pasukan
+                yang terpilih.
+              </Text>
+            </Text>
+          </Flex>
+          <audio ref={audioRef} autoPlay loop muted>
+            <source src="/music/sherma.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </Flex>
+      </Container>
+    </>
+  );
+};
+const MainPageThirdDay = () => {
   const audioRef = useRef(null);
 
   const [showIcon, setShowIcon] = useState(false);
