@@ -5,15 +5,18 @@ import {
   Container,
   Flex,
   Image,
+  Modal,
   Text,
   Title,
 } from "@mantine/core";
 import "../App.css";
 import { useParams } from "react-router-dom";
 import { listGroup } from "./dateRules";
+import { useDisclosure } from "@mantine/hooks";
 
 export default function MainPage() {
   const { kelompok } = useParams();
+  const [opened, { open, close }] = useDisclosure(false);
   return (
     <>
       <Container size={"xl"} px={"md"} m={0}>
@@ -53,8 +56,9 @@ export default function MainPage() {
                 radius={"lg"}
                 variant="outline"
                 c={"white"}
+                onClick={open}
               >
-                List Peta
+                Peta
               </Button>
               <Button
                 fullWidth
@@ -78,6 +82,24 @@ export default function MainPage() {
           </Flex>
         </Card>
       </Container>
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="Authentication"
+        withCloseButton
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+        centered
+      >
+        <Image
+          src="/denah.jpg"
+          alt="Denah"
+          onClick={() => window.open("/denah.jpg", "_blank")}
+          style={{ cursor: "pointer" }}
+        />
+      </Modal>
     </>
   );
 }
