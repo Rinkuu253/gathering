@@ -6,6 +6,7 @@ import {
   Flex,
   Image,
   Modal,
+  ScrollArea,
   Text,
   Title,
 } from "@mantine/core";
@@ -36,7 +37,7 @@ export default function MainPage() {
   return (
     <>
       <Container size={"xl"} px={"md"} m={0}>
-        <Card w="100%" bg={"transparent"} h={"85vh"}>
+        <ScrollArea w="100%" bg={"transparent"} h={"80vh"}>
           <Flex
             h={"100%"}
             align={"center"}
@@ -56,7 +57,13 @@ export default function MainPage() {
                 mx={"auto"}
               />
             </Flex>
-            <Flex justify={"center"} direction={"column"} gap={"md"} w={"100%"}>
+            <Flex
+              justify={"center"}
+              direction={"column"}
+              gap={"md"}
+              w={"100%"}
+              mt={"xl"}
+            >
               {/* muncul mulai 26 Sept jam 08:00 WIB */}
               {isAvailable("2025-09-22T09:00:00+07:00") && (
                 <Button
@@ -124,22 +131,22 @@ export default function MainPage() {
                   Squad Unit
                 </Button>
               )}
+              {isAvailable("2025-09-22T08:00:00+07:00") && (
+                <Button
+                  mt={"md"}
+                  fullWidth
+                  size="lg"
+                  radius="lg"
+                  variant="outline"
+                  c="white"
+                  onClick={() => navigate(`/group/${kelompok}/rogue`)}
+                >
+                  Rogue Battle
+                </Button>
+              )}
             </Flex>
-            {isAvailable("2025-09-22T08:00:00+07:00") && (
-              <Button
-                mt={"md"}
-                fullWidth
-                size="lg"
-                radius="lg"
-                variant="outline"
-                c="white"
-                onClick={() => navigate(`/group/${kelompok}/rogue`)}
-              >
-                Rogue Battle
-              </Button>
-            )}
           </Flex>
-        </Card>
+        </ScrollArea>
       </Container>
       <Modal
         opened={openedMap}
