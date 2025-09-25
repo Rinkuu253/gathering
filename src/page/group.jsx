@@ -14,6 +14,7 @@ import "../App.css";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { listGroup } from "./dateRules";
 import { useDisclosure } from "@mantine/hooks";
+import { Carousel, CarouselSlide } from "@mantine/carousel";
 
 function isAvailable(startDateStr) {
   // sekarang (WIB)
@@ -30,6 +31,9 @@ function isAvailable(startDateStr) {
 export default function MainPage() {
   const navigate = useNavigate();
   const { kelompok } = useParams();
+  const [openedHint, { open: openHint, close: closeHint }] =
+    useDisclosure(false);
+
   const [openedMap, { open: openMap, close: closeMap }] = useDisclosure(false);
   const [openedSeat, { open: openSeat, close: closeSeat }] =
     useDisclosure(false);
@@ -72,6 +76,7 @@ export default function MainPage() {
                   radius="lg"
                   variant="outline"
                   c="white"
+                  onClick={openHint}
                 >
                   Hint
                 </Button>
@@ -148,6 +153,46 @@ export default function MainPage() {
           </Flex>
         </ScrollArea>
       </Container>
+      <Modal
+        opened={openedHint}
+        onClose={closeHint}
+        title="Hint"
+        withCloseButton
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+        centered
+      >
+        <Carousel
+          emblaOptions={{ loop: true, dragFree: true }}
+          slideGap={"md"}
+          orientation="vertical"
+          withControls={false}
+        >
+          <Carousel.Slide>
+            <Flex justify="center">
+              <Image
+                src="/hint/hint1.jpeg"
+                alt="Denah"
+                onClick={() => window.open("/hint/hint1.jpeg", "_blank")}
+                style={{ cursor: "pointer" }}
+              />
+            </Flex>
+          </Carousel.Slide>
+
+          <Carousel.Slide>
+            <Flex justify="center" align={"center"} h={"100%"}>
+              <Image
+                src="/hint/hint1extra.jpeg"
+                alt="Denah"
+                onClick={() => window.open("/hint/hint1extra.jpeg", "_blank")}
+                style={{ cursor: "pointer" }}
+              />
+            </Flex>
+          </Carousel.Slide>
+        </Carousel>
+      </Modal>
       <Modal
         opened={openedMap}
         onClose={closeMap}
