@@ -231,7 +231,7 @@ const MainPageSecondDay = () => {
             </Text>
           </Flex>
           <audio ref={audioRef} autoPlay loop muted>
-            <source src="/music/sherma.mp3" type="audio/mpeg" />
+            <source src="/music/onGoing.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </Flex>
