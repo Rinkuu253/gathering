@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Container, Flex, Group, Text, Title } from "@mantine/core";
+import {
+  Container,
+  Flex,
+  Group,
+  Image,
+  ScrollArea,
+  Text,
+  Title,
+} from "@mantine/core";
 import "../App.css";
 import { IconVolume } from "@tabler/icons-react";
 
@@ -22,6 +30,10 @@ export default function MainPage() {
   );
   const inRange2 = isBetween(
     "2025-09-25T08:00:00+07:00", // mulai 24 Sept 2025 jam 00:00 WIB
+    "2025-09-25T13:59:00+07:00" // sampai 26 Sept 2025 jam 08:00 WIB
+  );
+  const inRange3 = isBetween(
+    "2025-09-25T14:00:00+07:00", // mulai 24 Sept 2025 jam 00:00 WIB
     "2025-09-26T08:00:00+07:00" // sampai 26 Sept 2025 jam 08:00 WIB
   );
 
@@ -29,6 +41,8 @@ export default function MainPage() {
     <MainPageFirstDay />
   ) : inRange2 ? (
     <MainPageSecondDay />
+  ) : inRange3 ? (
+    <MainPageSecondDayHalf />
   ) : (
     <MainPageThirdDay />
   );
@@ -239,6 +253,115 @@ const MainPageSecondDay = () => {
     </>
   );
 };
+
+const MainPageSecondDayHalf = () => {
+  const audioRef = useRef(null);
+
+  const [showIcon, setShowIcon] = useState(false);
+
+  const handleTextClick = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.muted = false;
+      audio.play();
+      setShowIcon(true); // show the volume icon
+    }
+  };
+
+  const handleIconClick = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  };
+  return (
+    <>
+      <Container size={"xl"} px={"md"} m={0}>
+        <Flex
+          direction={"column"}
+          h={"100vh"}
+          w={"100%"}
+          py={"xl"}
+          px={"xl"}
+          align={"center"}
+          mx={"auto"}
+          gap={"md"}
+        >
+          <Text fz={"h3"} fw={700}>
+            Beyond Journey - <br />
+            The Rise of Agents
+          </Text>
+          <Group>
+            {!showIcon && (
+              <Text
+                fz={"xs"}
+                style={{ cursor: "pointer", userSelect: "none" }}
+                onClick={handleTextClick}
+              >
+                {`> Tap for Audio <`}
+              </Text>
+            )}
+
+            {showIcon && (
+              <IconVolume
+                color="white"
+                size={24}
+                style={{ cursor: "pointer" }}
+                onClick={handleIconClick}
+              />
+            )}
+          </Group>
+          <ScrollArea mah={"90vh"}>
+            <Flex
+              gap={"lg"}
+              direction={"column"}
+              mt={"md"}
+              maw={800}
+              mx={"auto"}
+            >
+              <Text fz={"xs"}>
+                Ada sesuatu yang bergerak dalam diam… <br />
+                Bayangan yang tak terlihat, tapi dampaknya nyata.
+              </Text>
+              <Text fz={"xs"}>
+                Mereka menyusup di antara langkah kita, memperlambat,
+                melemahkan, bahkan menghancurkan tanpa kita sadari. Misi kita
+                sudah semakin dekat. Bayangan lawan mulai bergerak… namun mereka
+                belum tahu, bahwa para agen pilihan sedang bersiap.
+              </Text>
+              <Image
+                w={"70%"}
+                mx={"auto"}
+                src={"/bring.jpg"}
+                style={{ border: "4px solid white", borderRadius: 16 }}
+              />
+              <Text fz={"xs"}>
+                Besok… pintu menuju arena akan terbuka, sebuah tim yang dipilih
+                untuk satu misi: mengungkap dan menaklukkan musuh yang selama
+                ini bersembunyi di balik layar. Pertarungan ini bukan sekadar
+                permainan… ini tentang mengembalikan kekuatan, kecepatan, dan
+                kejayaan kita.
+              </Text>
+              <Text fz={"md"} fw={900}>
+                Bersiaplah… waktu kalian hampir tiba.
+              </Text>
+            </Flex>
+          </ScrollArea>
+
+          <audio ref={audioRef} autoPlay loop muted>
+            <source src="/music/halfSecondDay.mpeg" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </Flex>
+      </Container>
+    </>
+  );
+};
+
 const MainPageThirdDay = () => {
   const audioRef = useRef(null);
 

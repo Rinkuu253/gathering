@@ -65,7 +65,7 @@ export default function MainPage() {
               mt={"xl"}
             >
               {/* muncul mulai 26 Sept jam 08:00 WIB */}
-              {isAvailable("2025-09-22T09:00:00+07:00") && (
+              {isAvailable("2025-09-22T07:00:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
@@ -78,7 +78,7 @@ export default function MainPage() {
               )}
 
               {/* muncul mulai 26 Sept jam 09:00 WIB */}
-              {isAvailable("2025-09-22T08:00:00+07:00") && (
+              {isAvailable("2025-09-22T07:00:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
@@ -91,7 +91,7 @@ export default function MainPage() {
                 </Button>
               )}
 
-              {isAvailable("2025-09-22T09:00:00+07:00") && (
+              {isAvailable("2025-09-22T07:00:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
