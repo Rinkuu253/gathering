@@ -58,7 +58,7 @@ export default function MainPage() {
             </Flex>
             <Flex justify={"center"} direction={"column"} gap={"md"} w={"100%"}>
               {/* muncul mulai 26 Sept jam 08:00 WIB */}
-              {isAvailable("2025-09-22T09:00:00+07:00") && (
+              {isAvailable("2025-09-26T09:00:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
@@ -71,7 +71,7 @@ export default function MainPage() {
               )}
 
               {/* muncul mulai 26 Sept jam 09:00 WIB */}
-              {isAvailable("2025-09-22T08:00:00+07:00") && (
+              {isAvailable("2025-09-26T08:00:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
@@ -84,7 +84,7 @@ export default function MainPage() {
                 </Button>
               )}
 
-              {isAvailable("2025-09-22T09:00:00+07:00") && (
+              {isAvailable("2025-09-26T09:00:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
@@ -98,7 +98,7 @@ export default function MainPage() {
               )}
 
               {/* muncul mulai 26 Sept jam 11:10 WIB */}
-              {isAvailable("2025-09-22T11:10:00+07:00") && (
+              {isAvailable("2025-09-26T11:10:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
@@ -112,7 +112,7 @@ export default function MainPage() {
               )}
 
               {/* muncul mulai 26 Sept jam 08:50 WIB */}
-              {isAvailable("2025-09-22T08:50:00+07:00") && (
+              {isAvailable("2025-09-26T08:50:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
@@ -125,6 +125,19 @@ export default function MainPage() {
                 </Button>
               )}
             </Flex>
+            {isAvailable("2025-09-26T08:00:00+07:00") && (
+              <Button
+                mt={"md"}
+                fullWidth
+                size="lg"
+                radius="lg"
+                variant="outline"
+                c="white"
+                onClick={() => navigate(`/group/${kelompok}/rogue`)}
+              >
+                Rogue Battle
+              </Button>
+            )}
           </Flex>
         </Card>
       </Container>
