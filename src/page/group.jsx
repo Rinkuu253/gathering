@@ -68,7 +68,7 @@ export default function MainPage() {
               w={"100%"}
               mt={"xl"}
             >
-              {isAvailable("2025-09-26T15:30:00+07:00") && (
+              {isAvailable("2025-09-26T14:00:00+07:00") && (
                 <Button
                   fullWidth
                   size="lg"
