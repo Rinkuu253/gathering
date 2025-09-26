@@ -68,6 +68,20 @@ export default function MainPage() {
               w={"100%"}
               mt={"xl"}
             >
+              {isAvailable("2025-09-26T15:30:00+07:00") && (
+                <Button
+                  fullWidth
+                  size="lg"
+                  radius="lg"
+                  variant="outline"
+                  c="white"
+                  onClick={() =>
+                    window.open("https://forms.gle/KghkLtr3VydATTr5A", "_blank")
+                  }
+                >
+                  Form
+                </Button>
+              )}
               {/* muncul mulai 26 Sept jam 08:00 WIB */}
               {isAvailable("2025-09-26T08:00:00+07:00") && (
                 <Button
